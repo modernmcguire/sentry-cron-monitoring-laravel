@@ -1,0 +1,54 @@
+{
+    "name": "modernmcguire/sentry-cron-monitoring-laravel",
+    "description": "A helper package to utilize the Cron Job monitoring tool from Sentry",
+    "keywords": [
+        "modernmcguire",
+        "sentry-cron-monitoring-laravel"
+    ],
+    "homepage": "https://github.com/modernmcguire/sentry-cron-monitoring-laravel",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Ben Miller",
+            "email": "ben@modernmcguire.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/support": "^7.0|^8.0|^9.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Modernmcguire\\SentryCronMonitoringLaravel\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modernmcguire\\SentryCronMonitoringLaravel\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modernmcguire\\SentryCronMonitoringLaravel\\SentryCronMonitoringLaravelServiceProvider"
+            ],
+            "aliases": {
+                "SentryCronMonitoringLaravel": "Modernmcguire\\SentryCronMonitoringLaravel\\SentryCronMonitoringLaravelFacade"
+            }
+        }
+    }
+}
