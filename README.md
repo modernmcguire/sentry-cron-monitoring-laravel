@@ -2,7 +2,6 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/modernmcguire/sentry-cron-monitoring-laravel.svg?style=flat-square)](https://packagist.org/packages/modernmcguire/sentry-cron-monitoring-laravel)
 [![Total Downloads](https://img.shields.io/packagist/dt/modernmcguire/sentry-cron-monitoring-laravel.svg?style=flat-square)](https://packagist.org/packages/modernmcguire/sentry-cron-monitoring-laravel)
-![GitHub Actions](https://github.com/modernmcguire/sentry-cron-monitoring-laravel/actions/workflows/main.yml/badge.svg)
 
 A helper package to utilize the [Cron Job monitoring tool](https://docs.sentry.io/product/crons/) from Sentry.
 
