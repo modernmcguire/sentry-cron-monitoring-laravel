@@ -1,6 +1,6 @@
 <?php
 
-namespace Modernmcguire\SentryCronMonitoringLaravel;
+namespace ModernMcGuire\SentryCronMonitoringLaravel;
 
 class SentryCronMonitoringLaravel
 {

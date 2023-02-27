@@ -1,11 +1,11 @@
 <?php
 
-namespace Modernmcguire\SentryCronMonitoringLaravel;
+namespace ModernMcGuire\SentryCronMonitoringLaravel;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Modernmcguire\SentryCronMonitoringLaravel\Skeleton\SkeletonClass
+ * @see \ModernMcGuire\SentryCronMonitoringLaravel\Skeleton\SkeletonClass
  */
 class SentryCronMonitoringLaravelFacade extends Facade
 {

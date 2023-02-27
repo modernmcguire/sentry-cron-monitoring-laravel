@@ -1,6 +1,6 @@
 <?php
 
-namespace Modernmcguire\SentryCronMonitoringLaravel;
+namespace ModernMcGuire\SentryCronMonitoringLaravel;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;

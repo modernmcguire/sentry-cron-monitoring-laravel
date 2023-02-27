@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Modernmcguire\\SentryCronMonitoringLaravel\\": "src"
+            "ModernMcGuire\\SentryCronMonitoringLaravel\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Modernmcguire\\SentryCronMonitoringLaravel\\Tests\\": "tests"
+            "ModernMcGuire\\SentryCronMonitoringLaravel\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -44,10 +44,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Modernmcguire\\SentryCronMonitoringLaravel\\SentryCronMonitoringLaravelServiceProvider"
+                "ModernMcGuire\\SentryCronMonitoringLaravel\\SentryCronMonitoringLaravelServiceProvider"
             ],
             "aliases": {
-                "SentryCronMonitoringLaravel": "Modernmcguire\\SentryCronMonitoringLaravel\\SentryCronMonitoringLaravelFacade"
+                "SentryCronMonitoringLaravel": "ModernMcGuire\\SentryCronMonitoringLaravel\\SentryCronMonitoringLaravelFacade"
             }
         }
     }
