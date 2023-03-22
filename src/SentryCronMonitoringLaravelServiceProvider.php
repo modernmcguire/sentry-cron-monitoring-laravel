@@ -1,12 +1,12 @@
 <?php
 
-namespace ModernMcGuire\SentryCronMonitoringLaravel;
+namespace LionMM\SentryCronMonitoringLaravel;
 
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Console\Scheduling\Event;
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\ServiceProvider;
 
 class SentryCronMonitoringLaravelServiceProvider extends ServiceProvider
 {
@@ -17,34 +17,42 @@ class SentryCronMonitoringLaravelServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('sentry-cron-monitoring-laravel.php'),
+                __DIR__.'/../config/config.php' => config_path('sentry-cron-monitoring.php'),
             ], 'config');
         }
 
-        Event::macro('monitor', function($monitor_id) {
-            $uri = config('sentry-cron-monitoring-laravel.base_uri');
-            $dsn = config('sentry-cron-monitoring-laravel.dsn');
+        Event::macro('monitor', function ($monitorId) {
+            $uri = config('sentry-cron-monitoring.base_uri');
+            $dsn = config('sentry-cron-monitoring.dsn');
 
             /** @var \Illuminate\Console\Scheduling\Event $event */
             $event = $this;
 
-            if(!$dsn) {
+            if (!$dsn) {
                 Log::error('Sentry DSN not found. Please add it to your .env file.');
+
                 return $event;
             }
 
-            return $event->before(function () use ($uri, $dsn, $monitor_id) {
-                Http::withToken($dsn, 'DSN')
-                ->post($uri . $monitor_id . '/checkins/', [
-                    'status' => 'in_progress',
-                ]);
-            })
-            ->after(function () use ($uri, $dsn, $monitor_id) {
-                Http::withToken($dsn, 'DSN')
-                ->put($uri . $monitor_id . '/checkins/latest/', [
-                    'status' => 'ok',
-                ]);
-            });
+            return $event
+                ->before(function () use ($uri, $dsn, $monitorId) {
+                    Http::withToken($dsn, 'DSN')
+                        ->post($uri.$monitorId.'/checkins/', [
+                            'status' => 'in_progress',
+                        ]);
+                })
+                ->onSuccess(function () use ($uri, $dsn, $monitorId) {
+                    Http::withToken($dsn, 'DSN')
+                        ->put($uri.$monitorId.'/checkins/latest/', [
+                            'status' => 'ok',
+                        ]);
+                })
+                ->onFailure(function () use ($uri, $dsn, $monitorId) {
+                    Http::withToken($dsn, 'DSN')
+                        ->put($uri.$monitorId.'/checkins/latest/', [
+                            'status' => 'error',
+                        ]);
+                });
         });
     }
 
@@ -53,6 +61,6 @@ class SentryCronMonitoringLaravelServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'sentry-cron-monitoring-laravel');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'sentry-cron-monitoring');
     }
 }

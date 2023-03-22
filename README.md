@@ -5,25 +5,27 @@
 
 A helper package to utilize the [Cron Job monitoring tool](https://docs.sentry.io/product/crons/) from Sentry.
 
-> **Note** Sentry Cron Job monitoring is still in beta
+> **Warning**
+> Sentry Cron Job monitoring is still in beta
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require modernmcguire/sentry-cron-monitoring-laravel
+composer require lionmm/sentry-cron-monitoring-laravel
 ```
 
 Then publish the config file with:
 
 ```bash
-php artisan vendor:publish --provider="Modernmcguire\SentryCronMonitoringLaravel\SentryCronMonitoringLaravelServiceProvider"
+php artisan vendor:publish --provider="LionMM\SentryCronMonitoringLaravel\SentryCronMonitoringLaravelServiceProvider"
 ```
 
 ## Usage
 
 Add the following macro to your scheduled job that you would like to track.
+
 ```php
 $schedule->call(function () {
     DB::table('recent_users')->delete();
@@ -32,13 +34,8 @@ $schedule->call(function () {
 ->daily();
 ```
 
-This will add the `before` and `after` calls necessary to track the job in Sentry.
+This will add the `before`, `onSuccess` and `onFailure` calls necessary to track the job in Sentry.
 
-### Testing
-
-```bash
-composer test
-```
 
 ### Changelog
 
@@ -54,13 +51,9 @@ If you discover any security related issues, please email ben@modernmcguire.com 
 
 ## Credits
 
--   [Ben Miller](https://github.com/modernmcguire)
--   [All Contributors](../../contributors)
+- [Ben Miller](https://github.com/modernmcguire)
+- [All Contributors](../../contributors)
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-## Laravel Package Boilerplate
-
-This package was generated using the [Laravel Package Boilerplate](https://laravelpackageboilerplate.com).

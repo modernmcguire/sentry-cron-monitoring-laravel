@@ -9,5 +9,5 @@ return [
     /**
      * The Base URI for the Sentry Cron Monitor API
      */
-    'base_uri' => 'https://sentry.io/api/0/monitors/',
+    'base_uri' => env('SENTRY_MONITORS_URL', 'https://sentry.io/api/0/monitors/'),
 ];
